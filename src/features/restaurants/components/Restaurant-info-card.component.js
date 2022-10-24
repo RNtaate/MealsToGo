@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import { Card, Title} from 'react-native-paper';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 
 const RestaurantCard = styled(Card)`
   padding: 10px;
