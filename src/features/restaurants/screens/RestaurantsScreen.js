@@ -30,8 +30,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   listContainer: {
-    backgroundColor: '#123',
     flex: 1,
-    padding: 10
+    paddingVertical: 10,
+    paddingHorizontal: 20
   }
 })
