@@ -7,19 +7,21 @@ import RestaurantInfoCard from '../components/Restaurant-info-card.component';
 
 const RestaurantScreenWrapper = styled(SafeAreaView)`
   flex: 1;
-  background-color: white;
+  background-color: ${(props) => props.theme.colors.bg.primary };
+  margin-top: ${(props) => props.theme.space[2]}
   ${StatusBar.currentHeight && `padding-top: ${StatusBar.currentHeight}px`};
 `;
 
 const SearchContainer = styled(View)`
-  padding: 10px 20px;
+  padding: ${(props) => `${props.theme.sizes[0]} ${props.theme.sizes[1]}`};
 `;
 
 const ListContainer = styled(SearchContainer)`
   flex: 1;
 `;
 
-const RestaurantsScreen = () => {
+const RestaurantsScreen = (props) => {
+  console.log(`The backgroud color for all is ${props.theme}`)
   return (
     <RestaurantScreenWrapper>
       <SearchContainer>

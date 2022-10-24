@@ -4,12 +4,12 @@ import { Card, Title} from 'react-native-paper';
 import styled from 'styled-components/native';
 
 const RestaurantCard = styled(Card)`
-  padding: 10px;
+  padding: ${(props) => props.theme.sizes[0]};
   elevation: 5;
 `;
 
 const RestaurantTitle = styled(Text)`
-  margin-top: 10px;
+  margin-top: ${(props) => props.theme.sizes[0]};
 `;
 
 const RestaurantInfoCard = ({ restaurant = {} }) => {
