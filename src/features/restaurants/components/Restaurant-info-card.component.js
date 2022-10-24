@@ -10,7 +10,12 @@ const RestaurantCard = styled(Card)`
 
 const RestaurantTitle = styled(Text)`
   margin-top: ${(props) => props.theme.sizes[0]};
-  font-family: ${(props) => props.theme.fonts.body}
+  font-family: ${(props) => props.theme.fonts.heading}
+`;
+
+const RestaurantAddress = styled(Text)`
+  font-family: ${(props) => props.theme.fonts.body};
+  font-size: ${(props) => props.theme.fontSizes.caption};
 `;
 
 const RestaurantInfoCard = ({ restaurant = {} }) => {
@@ -28,6 +33,7 @@ const RestaurantInfoCard = ({ restaurant = {} }) => {
     <RestaurantCard>
       <Card.Cover source={{ uri: photos[0]}}/>
       <RestaurantTitle>{name}</RestaurantTitle>
+      <RestaurantAddress>{address}</RestaurantAddress>
     </RestaurantCard>
   )
 }
