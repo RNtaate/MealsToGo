@@ -14,7 +14,8 @@
     "expo-status-bar": "~1.4.0",
     "react": "18.0.0",
     "react-native": "0.69.6",
-    "react-native-paper": "^4.12.5"
+    "react-native-paper": "^4.12.5",
+    "styled-components": "^5.3.6"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
@@ -22,5 +23,8 @@
     "eslint": "^8.25.0",
     "prettier": "^2.7.1"
   },
-  "private": true
+  "private": true,
+  "resolutions": {
+    "styled-components": "^5"
+  }
 }
