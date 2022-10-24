@@ -10,6 +10,7 @@ const RestaurantCard = styled(Card)`
 
 const RestaurantTitle = styled(Text)`
   margin-top: ${(props) => props.theme.sizes[0]};
+  font-family: ${(props) => props.theme.fonts.body}
 `;
 
 const RestaurantInfoCard = ({ restaurant = {} }) => {
