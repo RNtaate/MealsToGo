@@ -5,6 +5,7 @@ import styled from 'styled-components/native';
 import { SvgXml } from 'react-native-svg';
 
 import star from '../../../../assets/star';
+import open from '../../../../assets/open';
 
 const RestaurantCard = styled(Card)`
   padding: ${(props) => props.theme.sizes[0]};
@@ -22,10 +23,16 @@ const RestaurantAddress = styled(Text)`
   font-size: ${(props) => props.theme.fontSizes.caption};
 `;
 
-const Row = styled(View)`
+const RatingRow = styled(View)`
   flex-direction: row;
   padding: ${(props) => `${props.theme.space[1]} ${props.theme.space[0]}`};
 `;
+
+const OpenSvg = styled(SvgXml)`
+  margin-left: auto;
+`;
+
+// RestaurantInfoCard function starts here ...
 
 const RestaurantInfoCard = ({ restaurant = {} }) => {
   const {
@@ -38,19 +45,21 @@ const RestaurantInfoCard = ({ restaurant = {} }) => {
     isClosedTemporarily
   } = restaurant
 
-  const ratingArray = Array(rating).fill(undefined);
+  const ratingArray = Array(Math.round(rating)).fill(undefined);
 
   return (
     <RestaurantCard>
       <Card.Cover source={{ uri: photos[0]}}/>
       <RestaurantTitle>{name}</RestaurantTitle>
-      <Row>
+      <RatingRow>
         { ratingArray.map((element, index) => {
           return (
             <SvgXml key={index} xml={star} width={20} height={20}/>
           )
         })}
-      </Row>
+
+        {isOpenNow && <OpenSvg xml={open} width={20} height={20}/>}
+      </RatingRow>
       <RestaurantAddress>{address}</RestaurantAddress>
     </RestaurantCard>
   )
