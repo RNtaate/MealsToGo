@@ -21,7 +21,6 @@ const ListContainer = styled(SearchContainer)`
 `;
 
 const RestaurantsScreen = (props) => {
-  console.log(`The backgroud color for all is ${props.theme}`)
   return (
     <RestaurantScreenWrapper>
       <SearchContainer>
