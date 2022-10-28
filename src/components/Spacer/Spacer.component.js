@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import { View } from 'react-native';
 
 const VerticalSmall = styled(View)`
-  margin-top: ${(props) => props.theme.space[2]};
+  margin-top: ${(props) => props.theme.space[1]};
 `;
 
 const VerticalMedium = styled(View)`
@@ -11,11 +11,11 @@ const VerticalMedium = styled(View)`
 `;
 
 const VerticalLarge = styled(View)`
-  margin-top: ${(props) => props.theme.space[2]};
+  margin-top: ${(props) => props.theme.space[3]};
 `;
 
 const HorizontalSmall = styled(View)`
-  margin-left: ${(props) => props.theme.space[2]};
+  margin-left: ${(props) => props.theme.space[1]};
 `;
 
 const HorizontalMedium = styled(View)`
@@ -23,11 +23,11 @@ const HorizontalMedium = styled(View)`
 `;
 
 const HorizontalLarge = styled(View)`
-  margin-left: ${(props) => props.theme.space[2]};
+  margin-left: ${(props) => props.theme.space[3]};
 `;
 
 
-export const Spacer = ({ variant, theme }) => {
+export const Spacer = ({ variant }) => {
   if( variant == "vertical.large") {
     return <VerticalLarge />
   }
