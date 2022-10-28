@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Image} from 'react-native';
 import { Card, Title} from 'react-native-paper';
 import styled from 'styled-components/native';
 import { SvgXml } from 'react-native-svg';
@@ -28,8 +28,14 @@ const RatingRow = styled(View)`
   padding: ${(props) => `${props.theme.space[1]} ${props.theme.space[0]}`};
 `;
 
-const OpenSvg = styled(SvgXml)`
+const OpenSection = styled(View)`
+  flex-direction: row;
   margin-left: auto;
+  align-items: center;
+`;
+
+const OpenSvg = styled(SvgXml)`
+  margin: ${(props) => `${props.theme.space[0]} ${props.theme.space[2]}`}
 `;
 
 // RestaurantInfoCard function starts here ...
@@ -37,12 +43,12 @@ const OpenSvg = styled(SvgXml)`
 const RestaurantInfoCard = ({ restaurant = {} }) => {
   const {
     name = "Some Restaurant",
-    icon,
+    icon = "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
     photos = ["https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg"],
     address = "2344 Some random street",
     isOpenNow = true,
     rating = 4,
-    isClosedTemporarily
+    isClosedTemporarily = true
   } = restaurant
 
   const ratingArray = Array(Math.round(rating)).fill(undefined);
@@ -57,8 +63,15 @@ const RestaurantInfoCard = ({ restaurant = {} }) => {
             <SvgXml key={index} xml={star} width={20} height={20}/>
           )
         })}
-
-        {isOpenNow && <OpenSvg xml={open} width={20} height={20}/>}
+        <OpenSection>
+          {isClosedTemporarily && (
+            <Text style={{color: "red", fontFamily: 'Oswald_400Regular'}}>
+              CLOSED TEMPORARILY
+            </Text>
+          )}
+          {isOpenNow && <OpenSvg xml={open} width={20} height={20} />}
+          <Image  style={{ width: 15, height: 15 }}source={{uri: icon}}/>
+        </OpenSection>
       </RatingRow>
       <RestaurantAddress>{address}</RestaurantAddress>
     </RestaurantCard>
