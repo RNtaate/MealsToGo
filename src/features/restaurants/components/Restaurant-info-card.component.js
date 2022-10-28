@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, StyleSheet, Image} from 'react-native';
 import { Card, Title} from 'react-native-paper';
 import styled from 'styled-components/native';
 import { SvgXml } from 'react-native-svg';
@@ -7,21 +7,11 @@ import { SvgXml } from 'react-native-svg';
 import star from '../../../../assets/star';
 import open from '../../../../assets/open';
 import { Spacer } from '../../../components/Spacer/Spacer.component';
+import { Text } from '../../../components/typography/text.component'
 
 const RestaurantCard = styled(Card)`
   padding: ${(props) => props.theme.sizes[0]};
   elevation: 5;
-`;
-
-const RestaurantTitle = styled(Text)`
-  margin-top: ${(props) => props.theme.sizes[0]};
-  font-family: ${(props) => props.theme.fonts.heading};
-  margin-bottom: ${(props) => props.theme.space[1]};
-`;
-
-const RestaurantAddress = styled(Text)`
-  font-family: ${(props) => props.theme.fonts.body};
-  font-size: ${(props) => props.theme.fontSizes.caption};
 `;
 
 const RatingRow = styled(View)`
@@ -57,7 +47,9 @@ const RestaurantInfoCard = ({ restaurant = {} }) => {
   return (
     <RestaurantCard>
       <Card.Cover source={{ uri: photos[0]}}/>
-      <RestaurantTitle>{name}</RestaurantTitle>
+      <Spacer position={"vertical"} size={"medium"}>
+        <Text variant={"label"}>{name}</Text>
+      </Spacer>
       <RatingRow>
         { ratingArray.map((element, index) => {
           return (
@@ -66,7 +58,7 @@ const RestaurantInfoCard = ({ restaurant = {} }) => {
         })}
         <OpenSection>
           {isClosedTemporarily && (
-            <Text style={{color: "red", fontFamily: 'Oswald_400Regular'}}>
+            <Text variant="error">
               CLOSED TEMPORARILY
             </Text>
           )}
@@ -78,7 +70,7 @@ const RestaurantInfoCard = ({ restaurant = {} }) => {
           <Image  style={{ width: 15, height: 15 }}source={{uri: icon}}/>
         </OpenSection>
       </RatingRow>
-      <RestaurantAddress>{address}</RestaurantAddress>
+      <Text variant="caption">{address}</Text>
     </RestaurantCard>
   )
 }
