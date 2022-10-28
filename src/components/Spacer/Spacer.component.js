@@ -1,52 +1,50 @@
 import React from 'react';
-import styled from 'styled-components/native';
+import styled, { useTheme } from 'styled-components/native';
 import { View } from 'react-native';
 
-const VerticalSmall = styled(View)`
-  margin-top: ${(props) => props.theme.space[1]};
-`;
+const sizeVariant = {
+  small: 1,
+  medium: 2,
+  large: 3
+}
 
-const VerticalMedium = styled(View)`
-  margin-top: ${(props) => props.theme.space[2]};
-`;
+const positionVariant = {
+  top: "margin-top",
+  right: "margin-right",
+  bottom: "margin-bottom",
+  left: "margin-left",
+  horizontal: "margin",
+  vertical: "margin"
+}
 
-const VerticalLarge = styled(View)`
-  margin-top: ${(props) => props.theme.space[3]};
-`;
-
-const HorizontalSmall = styled(View)`
-  margin-left: ${(props) => props.theme.space[1]};
-`;
-
-const HorizontalMedium = styled(View)`
-  margin-left: ${(props) => props.theme.space[2]};
-`;
-
-const HorizontalLarge = styled(View)`
-  margin-left: ${(props) => props.theme.space[3]};
-`;
-
-
-export const Spacer = ({ variant }) => {
-  if( variant == "vertical.large") {
-    return <VerticalLarge />
+const getVariant = (pos, size, theme) => {
+  switch(pos){
+    case "horizontal": 
+      return `${positionVariant[pos]}: 0 ${theme.space[sizeVariant[size]]}`; 
+    case "vertical":
+      return `${positionVariant[pos]}: ${theme.space[sizeVariant[size]]} 0`
+    default: 
+      return `${positionVariant[pos]}: ${theme.space[sizeVariant[size]]}`;
   }
+}
 
-  if (variant == "vertical.medium"){
-    return <VerticalMedium />
-  }
+const SpacerView = styled(View)`
+  ${({variant}) => variant}
+`;
 
-  if( variant == "horizontal.large") {
-    return <HorizontalLarge />
-  }
+// e.g margin-left: 4px;
+export const Spacer = ({position, size, children}) => {
+  const theme = useTheme();
+  const variant = getVariant(position, size, theme);
 
-  if (variant == "horizontal.medium"){
-    return <HorizontalMedium />
-  }
+  return (
+    <SpacerView variant={variant}>
+      {children}
+    </SpacerView>
+  )
+}
 
-  if( variant == "horizontal.small") {
-    return <HorizontalSmall />
-  }
-
-  return <VerticalSmall />
+Spacer.defaultProps = {
+  position: "top",
+  size: "small"
 }
