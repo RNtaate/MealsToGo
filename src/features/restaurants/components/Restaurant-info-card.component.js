@@ -71,9 +71,9 @@ const RestaurantInfoCard = ({ restaurant = {} }) => {
             </Text>
           )}
           
-          <Spacer variant={"horizontal.medium"}/>
+          <Spacer position={"horizontal"} size={"medium"}>
           {isOpenNow && <SvgXml xml={ open } width={20} height={20} />}
-          <Spacer variant={"horizontal.medium"}/>
+          </Spacer>
 
           <Image  style={{ width: 15, height: 15 }}source={{uri: icon}}/>
         </OpenSection>
