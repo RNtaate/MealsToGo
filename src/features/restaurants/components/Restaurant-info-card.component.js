@@ -1,7 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, Image} from 'react-native';
-import { Card, Title} from 'react-native-paper';
-import styled from 'styled-components/native';
+import { Card } from 'react-native-paper';
 import { SvgXml } from 'react-native-svg';
 
 import star from '../../../../assets/star';
@@ -11,7 +9,8 @@ import { Text } from '../../../components/typography/text.component'
 import {
   RestaurantCard,
   RatingRow,
-  OpenSection
+  OpenSection,
+  Icon
 } from './Restaurant-info-card.styles';
 
 // RestaurantInfoCard function starts here ...
@@ -52,7 +51,7 @@ const RestaurantInfoCard = ({ restaurant = {} }) => {
           {isOpenNow && <SvgXml xml={ open } width={20} height={20} />}
           </Spacer>
 
-          <Image  style={{ width: 15, height: 15 }}source={{uri: icon}}/>
+          <Icon source={{uri: icon}}/>
         </OpenSection>
       </RatingRow>
       <Text variant="caption">{address}</Text>

@@ -1,4 +1,4 @@
-import { View } from 'react-native';
+import { View, Image } from 'react-native';
 import { Card } from 'react-native-paper';
 import styled from 'styled-components/native';
 
@@ -16,4 +16,9 @@ export const OpenSection = styled(View)`
 flex-direction: row;
 margin-left: auto;
 align-items: center;
+`;
+
+export const Icon = styled(Image)`
+  width: 15px;
+  height: 15px;
 `;
