@@ -5,7 +5,8 @@ import { View } from 'react-native';
 const sizeVariant = {
   small: 1,
   medium: 2,
-  large: 3
+  large: 3,
+  x_large: 4
 }
 
 const positionVariant = {
