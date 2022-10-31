@@ -8,7 +8,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
 import RestaurantsScreen from './src/features/restaurants/screens/RestaurantsScreen';
-import { theme } from './src/features/restaurants/infrastructure/theme'
+import { theme } from './src/features/restaurants/infrastructure/theme';
+import { SafeArea } from './src/components/utility/safe-area.component';
 
 const isAndroid = Platform.OS
 export default function App() {
@@ -22,17 +23,17 @@ export default function App() {
 
   const SettingsScreen = () => {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <SafeArea>
         <Text>Settings</Text>
-      </View>
+      </SafeArea>
     )
   }
 
   const MapScreen = () => {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <SafeArea>
         <Text>Maps</Text>
-      </View>
+      </SafeArea>
     )
   }
 
