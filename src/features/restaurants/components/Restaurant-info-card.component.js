@@ -8,26 +8,11 @@ import star from '../../../../assets/star';
 import open from '../../../../assets/open';
 import { Spacer } from '../../../components/Spacer/Spacer.component';
 import { Text } from '../../../components/typography/text.component'
-
-const RestaurantCard = styled(Card)`
-  padding: ${(props) => props.theme.sizes[0]};
-  elevation: 5;
-`;
-
-const RatingRow = styled(View)`
-  flex-direction: row;
-  padding: ${(props) => `${props.theme.space[1]} ${props.theme.space[0]}`};
-`;
-
-const OpenSection = styled(View)`
-  flex-direction: row;
-  margin-left: auto;
-  align-items: center;
-`;
-
-const OpenSvg = styled(SvgXml)`
-  margin: ${(props) => `${props.theme.space[0]} ${props.theme.space[2]}`}
-`;
+import {
+  RestaurantCard,
+  RatingRow,
+  OpenSection
+} from './Restaurant-info-card.styles';
 
 // RestaurantInfoCard function starts here ...
 
