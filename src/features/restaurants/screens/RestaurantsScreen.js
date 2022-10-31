@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, SafeAreaView, StyleSheet, StatusBar } from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet, StatusBar, FlatList } from 'react-native';
 import { Searchbar } from 'react-native-paper';
 import styled from 'styled-components/native';
 
@@ -18,16 +18,31 @@ const SearchContainer = styled(View)`
 
 const ListContainer = styled(SearchContainer)`
   flex: 1;
+  padding: 0;
 `;
 
 const RestaurantsScreen = (props) => {
+
+  const restList = [
+    {name: "Rest 1", street: "Another Street"},
+    {name: "Rest 2", street: "Another Street"},
+    {name: "Rest 3", street: "Another Street"},
+    {name: "Rest 4", street: "Another Street"},
+  ]
+
+
   return (
     <RestaurantScreenWrapper>
       <SearchContainer>
         <Searchbar placeholder='Search'/>
       </SearchContainer>
       <ListContainer>
-        <RestaurantInfoCard />
+        <FlatList 
+          data={restList}
+          renderItem={RestaurantInfoCard}
+          keyExtractor={(item) => item.name}
+          contentContainerStyle={{paddingHorizontal: 16}}
+        />
       </ListContainer>
     </RestaurantScreenWrapper>
   )
