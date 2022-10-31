@@ -29,35 +29,33 @@ const RestaurantInfoCard = ({ restaurant = {} }) => {
   const ratingArray = Array(Math.round(rating)).fill(undefined);
 
   return (
-    <Spacer position={"bottom"} size={"x_large"}>
-      <RestaurantCard>
-        <Card.Cover source={{ uri: photos[0]}}/>
-        <Spacer position={"vertical"} size={"medium"}>
-          <Text variant={"label"}>{name}</Text>
-        </Spacer>
-        <RatingRow>
-          { ratingArray.map((element, index) => {
-            return (
-              <SvgXml key={index} xml={star} width={20} height={20}/>
-            )
-          })}
-          <OpenSection>
-            {isClosedTemporarily && (
-              <Text variant="error">
-                CLOSED TEMPORARILY
-              </Text>
-            )}
-            
-            <Spacer position={"horizontal"} size={"medium"}>
-            {isOpenNow && <SvgXml xml={ open } width={20} height={20} />}
-            </Spacer>
+    <RestaurantCard>
+      <Card.Cover source={{ uri: photos[0]}}/>
+      <Spacer position={"vertical"} size={"medium"}>
+        <Text variant={"label"}>{name}</Text>
+      </Spacer>
+      <RatingRow>
+        { ratingArray.map((element, index) => {
+          return (
+            <SvgXml key={index} xml={star} width={20} height={20}/>
+          )
+        })}
+        <OpenSection>
+          {isClosedTemporarily && (
+            <Text variant="error">
+              CLOSED TEMPORARILY
+            </Text>
+          )}
+          
+          <Spacer position={"horizontal"} size={"medium"}>
+          {isOpenNow && <SvgXml xml={ open } width={20} height={20} />}
+          </Spacer>
 
-            <Icon source={{uri: icon}}/>
-          </OpenSection>
-        </RatingRow>
-        <Text variant="caption">{address}</Text>
-      </RestaurantCard>
-    </Spacer>
+          <Icon source={{uri: icon}}/>
+        </OpenSection>
+      </RatingRow>
+      <Text variant="caption">{address}</Text>
+    </RestaurantCard>
   )
 }
 
