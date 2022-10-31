@@ -49,7 +49,7 @@ export default function App() {
     )
   }
 
-  const createScreenOptions = (route) => {
+  const createScreenOptions = ({route}) => {
     return {
       headerShown: false,
       tabBarIcon: ({ focused, color, size }) => createTabBarIcon(route.name, focused, color, size),
@@ -62,7 +62,7 @@ export default function App() {
 
   const ScreenTabs = () => {
     return (
-      <Tab.Navigator screenOptions={({ route }) => createScreenOptions(route)}>
+      <Tab.Navigator screenOptions={createScreenOptions}>
         <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
         <Tab.Screen name="Map" component={MapScreen} />
         <Tab.Screen name='Settings' component={SettingsScreen} />
