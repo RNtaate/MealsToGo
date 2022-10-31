@@ -14,6 +14,12 @@ import { SafeArea } from './src/components/utility/safe-area.component';
 const isAndroid = Platform.OS
 export default function App() {
 
+  const TAB_ICONS = {
+    Restaurants: "restaurant",
+    Map: "map",
+    Settings: "settings"
+  }
+
   const [oswaldFontFamily] = oswaldUseFont({ Oswald_400Regular });
   const [latoFontFamily] = latoUseFont({ Lato_400Regular })
 
@@ -37,31 +43,26 @@ export default function App() {
     )
   }
 
+  const createTabBarIcon = (iconName, focused, color, size) => {
+    return (
+      <Ionicons name={focused ? TAB_ICONS[iconName] : `${TAB_ICONS[iconName]}-outline`} color={color} size={size} />
+    )
+  }
+
+  const createScreenOptions = (route) => {
+    return {
+      headerShown: false,
+      tabBarIcon: ({ focused, color, size }) => createTabBarIcon(route.name, focused, color, size),
+      tabBarActiveTintColor: '#D0421B',
+      tabBarInactiveTintColor: 'gray',
+    }
+  }
+
   const Tab = createBottomTabNavigator();
 
   const ScreenTabs = () => {
     return (
-      <Tab.Navigator screenOptions={({route}) => ({
-        headerShown: false,
-        tabBarIcon: ({focused, color, size}) => {
-          let iconName;
-          switch(route.name){
-            case "Restaurants":
-              iconName = focused ? 'restaurant' : 'restaurant-outline'
-              break;
-            case "Map":
-              iconName = focused ? 'map' : 'map-outline'
-              break;
-            case "Settings":
-              iconName = focused ? 'settings' : 'settings-outline'
-              break;
-          }
-
-          return (<Ionicons name={iconName} color={color} size={size} />)
-        },
-        tabBarActiveTintColor: '#D0421B',
-        tabBarInactiveTintColor: 'gray',
-      })}>
+      <Tab.Navigator screenOptions={({ route }) => createScreenOptions(route)}>
         <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
         <Tab.Screen name="Map" component={MapScreen} />
         <Tab.Screen name='Settings' component={SettingsScreen} />
