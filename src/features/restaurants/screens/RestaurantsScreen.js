@@ -23,6 +23,13 @@ const ListContainer = styled(SearchContainer)`
   margin-top: ${(props) => props.theme.sizes[0]}
 `;
 
+const RestaurantList = styled(FlatList).attrs({
+  contentContainerStyle: {
+    paddingHorizontal: 16,
+    paddingTop: 5
+  }
+})``;
+
 const RestaurantsScreen = (props) => {
 
   const restList = [
@@ -39,7 +46,7 @@ const RestaurantsScreen = (props) => {
         <Searchbar placeholder='Search'/>
       </SearchContainer>
       <ListContainer>
-        <FlatList 
+        <RestaurantList 
           data={restList}
           renderItem={() => {
             return (
@@ -49,7 +56,6 @@ const RestaurantsScreen = (props) => {
             )
           }}
           keyExtractor={(item) => item.name}
-          contentContainerStyle={{paddingHorizontal: 16, paddingTop: 5}}
         />
       </ListContainer>
     </RestaurantScreenWrapper>
