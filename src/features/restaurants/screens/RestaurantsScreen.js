@@ -5,13 +5,9 @@ import styled from 'styled-components/native';
 import { Spacer } from '../../../components/Spacer/Spacer.component';
 
 import RestaurantInfoCard from '../components/Restaurant-info-card.component';
+import { SafeArea } from '../../../components/utility/safe-area.component';
 
-const RestaurantScreenWrapper = styled(SafeAreaView)`
-  flex: 1;
-  background-color: ${(props) => props.theme.colors.bg.primary };
-  margin-top: ${(props) => props.theme.space[2]}
-  ${StatusBar.currentHeight && `padding-top: ${StatusBar.currentHeight}px`};
-`;
+const RestaurantScreenWrapper = styled(SafeArea)``;
 
 const SearchContainer = styled(View)`
   padding: ${(props) => `${props.theme.sizes[0]} ${props.theme.sizes[1]}`};
