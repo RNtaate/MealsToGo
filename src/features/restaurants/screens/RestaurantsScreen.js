@@ -6,6 +6,7 @@ import { Spacer } from '../../../components/Spacer/Spacer.component';
 
 import RestaurantInfoCard from '../components/Restaurant-info-card.component';
 import { SafeArea } from '../../../components/utility/safe-area.component';
+import { restaurantsRequest } from '../../../services/restaurants/restaurants.service';
 
 const RestaurantScreenWrapper = styled(SafeArea)``;
 
