@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, SafeAreaView, StyleSheet, StatusBar, FlatList } from 'react-native';
 import { Searchbar } from 'react-native-paper';
 import styled from 'styled-components/native';
@@ -6,7 +6,8 @@ import { Spacer } from '../../../components/Spacer/Spacer.component';
 
 import RestaurantInfoCard from '../components/Restaurant-info-card.component';
 import { SafeArea } from '../../../components/utility/safe-area.component';
-import { restaurantsRequest } from '../../../services/restaurants/restaurants.service';
+
+import { RestaurantContext } from '../../../services/restaurants/restaurants.context';
 
 const RestaurantScreenWrapper = styled(SafeArea)``;
 
@@ -36,6 +37,8 @@ const RestaurantsScreen = (props) => {
     {name: "Rest 4", street: "Another Street"},
   ]
 
+  const restaurantsList = useContext(RestaurantContext);
+  console.log(restaurantsList)
 
   return (
     <RestaurantScreenWrapper>
@@ -44,7 +47,7 @@ const RestaurantsScreen = (props) => {
       </SearchContainer>
       <ListContainer>
         <RestaurantList 
-          data={restList}
+          data={restaurantsList.restaurants}
           renderItem={() => {
             return (
               <Spacer position={"bottom"} size={"x_large"}>
@@ -52,7 +55,6 @@ const RestaurantsScreen = (props) => {
               </Spacer>
             )
           }}
-          keyExtractor={(item) => item.name}
         />
       </ListContainer>
     </RestaurantScreenWrapper>
