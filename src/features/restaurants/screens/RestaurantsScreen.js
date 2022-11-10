@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { View, Text, SafeAreaView, StyleSheet, StatusBar, FlatList } from 'react-native';
-import { Searchbar } from 'react-native-paper';
+import { Searchbar, ActivityIndicator, Colors } from 'react-native-paper';
 import styled from 'styled-components/native';
 import { Spacer } from '../../../components/Spacer/Spacer.component';
 
@@ -19,6 +19,12 @@ const ListContainer = styled(SearchContainer)`
   flex: 1;
   padding: 0;
   margin-top: ${(props) => props.theme.sizes[0]}
+`;
+
+const ActivityView = styled(View)`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
 `;
 
 const RestaurantList = styled(FlatList).attrs({
@@ -42,22 +48,26 @@ const RestaurantsScreen = (props) => {
 
   return (
     <RestaurantScreenWrapper>
-      <SearchContainer>
-        <Searchbar placeholder='Search'/>
-      </SearchContainer>
-      <ListContainer>
-        {isLoading && <Text>Loading Restaurants ...</Text>}
-        <RestaurantList 
-          data={restaurants}
-          renderItem={({ item }) => {
-            return (
-              <Spacer position={"bottom"} size={"x_large"}>
-                <RestaurantInfoCard restaurant={item}/>
-              </Spacer>
-            )
-          }}
-        />
-      </ListContainer>
+      { isLoading ? <ActivityView>
+        <ActivityIndicator size={'large'} color={Colors.blue600}/>
+      </ActivityView> : 
+      <>
+        <SearchContainer>
+          <Searchbar placeholder='Search'/>
+        </SearchContainer>
+        <ListContainer>
+          <RestaurantList 
+            data={restaurants}
+            renderItem={({ item }) => {
+              return (
+                <Spacer position={"bottom"} size={"x_large"}>
+                  <RestaurantInfoCard restaurant={item}/>
+                </Spacer>
+              )
+            }}
+          />
+        </ListContainer>
+      </> }
     </RestaurantScreenWrapper>
   )
 }
