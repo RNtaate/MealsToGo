@@ -37,8 +37,8 @@ const RestaurantsScreen = (props) => {
     {name: "Rest 4", street: "Another Street"},
   ]
 
-  const restaurantsList = useContext(RestaurantContext);
-  console.log(restaurantsList)
+  const {restaurants, isLoading} = useContext(RestaurantContext);
+  console.log(restaurants)
 
   return (
     <RestaurantScreenWrapper>
@@ -46,8 +46,9 @@ const RestaurantsScreen = (props) => {
         <Searchbar placeholder='Search'/>
       </SearchContainer>
       <ListContainer>
+        {isLoading && <Text>Loading Restaurants ...</Text>}
         <RestaurantList 
-          data={restaurantsList.restaurants}
+          data={restaurants}
           renderItem={() => {
             return (
               <Spacer position={"bottom"} size={"x_large"}>
