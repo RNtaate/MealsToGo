@@ -38,7 +38,7 @@ const RestaurantsScreen = (props) => {
   ]
 
   const {restaurants, isLoading} = useContext(RestaurantContext);
-  console.log(restaurants)
+  console.log(JSON.stringify(restaurants, null, 2))
 
   return (
     <RestaurantScreenWrapper>
@@ -49,10 +49,10 @@ const RestaurantsScreen = (props) => {
         {isLoading && <Text>Loading Restaurants ...</Text>}
         <RestaurantList 
           data={restaurants}
-          renderItem={() => {
+          renderItem={({ item }) => {
             return (
               <Spacer position={"bottom"} size={"x_large"}>
-                <RestaurantInfoCard />
+                <RestaurantInfoCard restaurant={item}/>
               </Spacer>
             )
           }}
