@@ -30,10 +30,6 @@ const LocationContextProvider = ({ children }) => {
 
   }
 
-  useEffect(() => {
-    locationSearch();
-  }, [])
-
   return (
     <LocationContext.Provider value={{
       location,
