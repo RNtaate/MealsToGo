@@ -1,21 +1,18 @@
 import React, { useContext } from 'react';
-import { View, Text, SafeAreaView, StyleSheet, StatusBar, FlatList } from 'react-native';
-import { Searchbar, ActivityIndicator, Colors } from 'react-native-paper';
+import { View, FlatList } from 'react-native';
+import { ActivityIndicator, Colors } from 'react-native-paper';
 import styled from 'styled-components/native';
 import { Spacer } from '../../../components/Spacer/Spacer.component';
 
 import RestaurantInfoCard from '../components/Restaurant-info-card.component';
+import SearchComponent from '../components/Search.component';
 import { SafeArea } from '../../../components/utility/safe-area.component';
 
 import { RestaurantContext } from '../../../services/restaurants/restaurants.context';
 
 const RestaurantScreenWrapper = styled(SafeArea)``;
 
-const SearchContainer = styled(View)`
-  padding: ${(props) => `${props.theme.sizes[0]} ${props.theme.sizes[1]}`};
-`;
-
-const ListContainer = styled(SearchContainer)`
+const ListContainer = styled(View)`
   flex: 1;
   padding: 0;
   margin-top: ${(props) => props.theme.sizes[0]}
@@ -44,7 +41,7 @@ const RestaurantsScreen = (props) => {
   ]
 
   const {restaurants, isLoading} = useContext(RestaurantContext);
-  console.log(JSON.stringify(restaurants, null, 2))
+  // console.log(JSON.stringify(restaurants, null, 2))
 
   return (
     <RestaurantScreenWrapper>
@@ -53,9 +50,7 @@ const RestaurantsScreen = (props) => {
           <ActivityIndicator size={'large'} color={Colors.blue600}/>
         </ActivityView> : 
         <>
-          <SearchContainer>
-            <Searchbar placeholder='Search'/>
-          </SearchContainer>
+          <SearchComponent />
           <ListContainer>
             <RestaurantList 
               data={restaurants}
