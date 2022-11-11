@@ -48,26 +48,28 @@ const RestaurantsScreen = (props) => {
 
   return (
     <RestaurantScreenWrapper>
-      { isLoading ? <ActivityView>
-        <ActivityIndicator size={'large'} color={Colors.blue600}/>
-      </ActivityView> : 
-      <>
-        <SearchContainer>
-          <Searchbar placeholder='Search'/>
-        </SearchContainer>
-        <ListContainer>
-          <RestaurantList 
-            data={restaurants}
-            renderItem={({ item }) => {
-              return (
-                <Spacer position={"bottom"} size={"x_large"}>
-                  <RestaurantInfoCard restaurant={item}/>
-                </Spacer>
-              )
-            }}
-          />
-        </ListContainer>
-      </> }
+      { isLoading ? 
+        <ActivityView>
+          <ActivityIndicator size={'large'} color={Colors.blue600}/>
+        </ActivityView> : 
+        <>
+          <SearchContainer>
+            <Searchbar placeholder='Search'/>
+          </SearchContainer>
+          <ListContainer>
+            <RestaurantList 
+              data={restaurants}
+              renderItem={({ item }) => {
+                return (
+                  <Spacer position={"bottom"} size={"x_large"}>
+                    <RestaurantInfoCard restaurant={item}/>
+                  </Spacer>
+                )
+              }}
+            />
+          </ListContainer>
+        </> 
+      }
     </RestaurantScreenWrapper>
   )
 }
