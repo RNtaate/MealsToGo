@@ -1,4 +1,6 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useContext } from 'react';
+
+import { LocationContext } from '../location/location.context';
 import { restaurantsRequest, restaurantTransform } from './restaurants.service';
 
 export const RestaurantContext = createContext()
@@ -8,11 +10,13 @@ const RestaurantContextProvider = ({ children }) => {
   const [restaurants, setRestaurants] = useState([]);
   const [ error, setError] = useState("");
   const [ isLoading, setIsLoading ] = useState(false);
+  const {location} = useContext(LocationContext);
 
-  const retrieveRestaurants = () => {
+  const retrieveRestaurants = (locString) => {
     setIsLoading(true);
+    setRestaurants([]);
     setTimeout(() => {
-      restaurantsRequest()
+      restaurantsRequest(locString)
       .then(response => {
         return restaurantTransform(response)
       })
@@ -24,12 +28,15 @@ const RestaurantContextProvider = ({ children }) => {
         setIsLoading(false);
         setError(err)
       })
-    }, 5000)
+    }, 3000)
   }
 
   useEffect(() => {
-    retrieveRestaurants();
-  }, [])
+    if(location) {
+      const locationString = `${location.lat},${location.lng}`
+      retrieveRestaurants(locationString);
+    }
+  }, [location]) // Note: If you don't use the location dependency here, the original application load won't fire retrieval of restaurants, because it never detects the change in location fired in SearchComponent, because this onMount useEffect, already fired with a null location. So the change of location made by SearchComponent's useEffect never refires the above useEffect.
 
   return (
     <RestaurantContext.Provider value={{
