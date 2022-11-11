@@ -20,12 +20,10 @@ const LocationContextProvider = ({ children }) => {
     .then(transformedResult => {
       setIsLocationLoading(false);
       setLocation(transformedResult);
-      console.log(transformedResult);
     })
     .catch( err => {
       setIsLocationLoading(false);
       setLocationError(err);
-      console.log(err);
     })
 
   }
