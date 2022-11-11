@@ -10,6 +10,8 @@ import { Ionicons } from '@expo/vector-icons';
 import RestaurantsScreen from './src/features/restaurants/screens/RestaurantsScreen';
 import { theme } from './src/features/restaurants/infrastructure/theme';
 import { SafeArea } from './src/components/utility/safe-area.component';
+import RestaurantContextProvider from './src/services/restaurants/restaurants.context';
+import LocationContextProvider from './src/services/location/location.context';
 
 const isAndroid = Platform.OS
 export default function App() {
@@ -73,9 +75,13 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <NavigationContainer>
-          <ScreenTabs />
-        </NavigationContainer>
+        <LocationContextProvider>
+          <RestaurantContextProvider>
+            <NavigationContainer>
+              <ScreenTabs />
+            </NavigationContainer>
+          </RestaurantContextProvider>
+        </LocationContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style='auto' />
     </>
