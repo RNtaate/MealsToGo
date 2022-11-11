@@ -33,15 +33,7 @@ const RestaurantList = styled(FlatList).attrs({
 
 const RestaurantsScreen = (props) => {
 
-  const restList = [
-    {name: "Rest 1", street: "Another Street"},
-    {name: "Rest 2", street: "Another Street"},
-    {name: "Rest 3", street: "Another Street"},
-    {name: "Rest 4", street: "Another Street"},
-  ]
-
   const {restaurants, isLoading} = useContext(RestaurantContext);
-  // console.log(JSON.stringify(restaurants, null, 2))
 
   return (
     <RestaurantScreenWrapper>
