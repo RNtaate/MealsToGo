@@ -13,7 +13,10 @@ const LocationContextProvider = ({ children }) => {
   const locationSearch = (searchKeyWord = "Antwerp") => {
     setIsLocationLoading(true);
     setKeyWord(searchKeyWord)
-    locationRequest(searchKeyWord.toLowerCase())
+  }
+
+  useEffect(() => {
+    locationRequest(keyWord.toLowerCase())
     .then((response) => {
       return locationTransform(response);
     })
@@ -25,8 +28,7 @@ const LocationContextProvider = ({ children }) => {
       setIsLocationLoading(false);
       setLocationError(err);
     })
-
-  }
+  }, [keyWord])
 
   return (
     <LocationContext.Provider value={{

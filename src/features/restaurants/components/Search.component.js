@@ -21,10 +21,6 @@ const SearchComponent = () => {
     }
   }
 
-  useEffect(() => {
-    locationSearch(keyWord)
-  }, [])
-
   return (
     <SearchContainer>
       <Searchbar 
