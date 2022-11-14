@@ -36,7 +36,7 @@ const RestaurantContextProvider = ({ children }) => {
       const locationString = `${location.lat},${location.lng}`
       retrieveRestaurants(locationString);
     }
-  }, [location]) // Note: If you don't use the location dependency here, the original application load won't fire retrieval of restaurants, because it never detects the change in location fired in SearchComponent, because this onMount useEffect, already fired with a null location. So the change of location made by SearchComponent's useEffect never refires the above useEffect.
+  }, [location]) // Note: If you don't use the location dependency here, the original application load won't fire retrieval of restaurants, because it never detects the change in location fired in LocationContext, because this onMount useEffect, already fired with a null location. So the change of location made by LocationContext's useEffect never refires the above useEffect.
 
   return (
     <RestaurantContext.Provider value={{
