@@ -10,10 +10,10 @@ const DetailsView = styled(View)`
 `;
 
 export const RestaurantDetailsScreen = ({ route }) => {
-  const { item } = route.params
+  const { restaurant } = route.params
   return (
     <DetailsView>
-      <RestaurantInfoCard restaurant={ item }/>
+      <RestaurantInfoCard restaurant={ restaurant }/>
     </DetailsView>
   )
 }
