@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
 import { ThemeProvider } from 'styled-components/native';
 import { useFonts as oswaldUseFont, Oswald_400Regular } from '@expo-google-fonts/oswald';
