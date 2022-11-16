@@ -14,6 +14,12 @@ const SearchContainer = styled(View)`
   z-index: 999;
 `;
 
+const MapSearchBar = styled(Searchbar).attrs(props => ({
+  inputStyle: {
+    fontFamily: props.theme.fonts.heading
+  }
+}))``;
+
 const SearchComponent = () => {
 
   const {keyWord, locationSearch} = useContext(LocationContext);
@@ -31,7 +37,7 @@ const SearchComponent = () => {
 
   return (
     <SearchContainer>
-      <Searchbar 
+      <MapSearchBar 
         placeholder='Search for a place'
         value={searchKeyWord}
         onChangeText={(text) => {
