@@ -4,7 +4,6 @@ import styled from 'styled-components/native';
 import { List } from 'react-native-paper';
 
 import RestaurantInfoCard from '../components/Restaurant-info-card.component';
-import { theme } from '../infrastructure/theme';
 
 const DetailsView = styled(View)`
   flex: 1;
