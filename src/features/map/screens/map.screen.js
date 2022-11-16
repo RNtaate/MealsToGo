@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { View, Dimensions } from 'react-native';
 import MapView from 'react-native-maps';
 import styled from 'styled-components/native';
 
 import SearchComponent from '../components/Search.component';
+import { LocationContext } from '../../../services/location/location.context';
+import { RestaurantContext } from '../../../services/restaurants/restaurants.context';
 
 const Map = styled(MapView)`
   height: 100%;
@@ -11,10 +13,28 @@ const Map = styled(MapView)`
 `;
 
 export const MapScreen = () => {
+
+  const { location } = useContext(LocationContext)
+  const [latDelta, setLatDelta] = useState(0)
+
+  const { viewport, lat, lng } = location;
+
+  useEffect(() => {
+    const calcLatDelta = viewport.northeast.lat - viewport.southwest.lat;
+    setLatDelta(calcLatDelta)
+  }, [location, viewport])
+
   return (
     <>
       <SearchComponent />
-      <Map />
+      <Map
+        region={{
+          latitude: lat,
+          longitude: lng,
+          latitudeDelta: latDelta,
+          longitudeDelta: 0.02
+        }}
+       />
     </>
   )
 }
