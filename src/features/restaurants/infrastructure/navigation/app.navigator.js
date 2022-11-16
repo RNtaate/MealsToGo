@@ -8,29 +8,28 @@ import { RestaurantsNavigation } from './restaurants.navigator';
 import { SafeArea } from '../../../../components/utility/safe-area.component';
 
 
+const SettingsScreen = () => {
+  return (
+    <SafeArea>
+      <Text>Settings</Text>
+    </SafeArea>
+  )
+}
+
+const MapScreen = () => {
+  return (
+    <SafeArea>
+      <Text>Maps</Text>
+    </SafeArea>
+  )
+}
+
 const AppNavigator = () => {
 
   const TAB_ICONS = {
     Restaurants: "restaurant",
     Map: "map",
     Settings: "settings"
-  }
-
-
-  const SettingsScreen = () => {
-    return (
-      <SafeArea>
-        <Text>Settings</Text>
-      </SafeArea>
-    )
-  }
-
-  const MapScreen = () => {
-    return (
-      <SafeArea>
-        <Text>Maps</Text>
-      </SafeArea>
-    )
   }
 
   const createTabBarIcon = (iconName, focused, color, size) => {
