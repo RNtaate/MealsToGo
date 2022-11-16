@@ -4,6 +4,7 @@ import styled from 'styled-components/native';
 import { List } from 'react-native-paper';
 
 import RestaurantInfoCard from '../components/Restaurant-info-card.component';
+import { theme } from '../infrastructure/theme';
 
 const DetailsView = styled(View)`
   flex: 1;
@@ -13,6 +14,24 @@ const DetailsView = styled(View)`
 const ListScrollView = styled(ScrollView)`
   margin-top: ${({theme}) => theme.space[3]}
 `;
+
+const ListAccordion = styled(List.Accordion).attrs(props => ({
+  titleStyle: {
+    fontSize: parseFloat(props.theme.fontSizes.button.split("px")[0]),
+    fontFamily: props.theme.fonts.heading
+  }
+}))``;
+
+const ListItem = styled(List.Item).attrs(props => {
+  const itemFontSize = parseFloat(props.theme.fontSizes.caption.split("px")[0])
+  return {
+    titleStyle: {
+      color: props.theme.colors.brand.primary,
+      fontSize: itemFontSize,
+      fontFamily: props.theme.fonts.monospace
+    }
+  }
+})``;
 
 export const RestaurantDetailsScreen = ({ route }) => {
   const { restaurant } = route.params
@@ -24,51 +43,51 @@ export const RestaurantDetailsScreen = ({ route }) => {
   return (
     <DetailsView>
       <RestaurantInfoCard restaurant={ restaurant }/>
-      <ListScrollView>
-        <List.Accordion
-          title="Breakfast"
-          left={props => <List.Icon {...props} icon="bread-slice"/>}
-          expanded={breakfastExpanded}
-          onPress={() => setBreakfastExpanded(!breakfastExpanded)}
-        >
-          <List.Item title="Eggs Benedict"/>
-          <List.Item title="Milk Tea with Toast" />
-          <List.Item title="Classic breakfast" />
-        </List.Accordion>
+        <ListScrollView>
+          <ListAccordion
+            title="Breakfast"
+            left={props => <List.Icon {...props} icon="bread-slice"/>}
+            expanded={breakfastExpanded}
+            onPress={() => setBreakfastExpanded(!breakfastExpanded)}
+          >
+            <ListItem title="Eggs Benedict"/>
+            <ListItem title="Milk Tea with Toast" />
+            <ListItem title="Classic breakfast" />
+          </ListAccordion>
 
-        <List.Accordion
-          title="Lunch"
-          left={props => <List.Icon {...props} icon="food"/>}
-          expanded={lunchExpanded}
-          onPress={() => setLunchExpanded(!lunchExpanded)}
-        >
-          <List.Item title="Matooke, Meat, Ground-Nuts"/>
-          <List.Item title="Posho, Beans, Silver Fish" />
-          <List.Item title="Oluwoombo, Molokoni" />
-        </List.Accordion>
+          <ListAccordion
+            title="Lunch"
+            left={props => <List.Icon {...props} icon="food"/>}
+            expanded={lunchExpanded}
+            onPress={() => setLunchExpanded(!lunchExpanded)}
+          >
+            <ListItem title="Matooke, Meat, Ground-Nuts"/>
+            <ListItem title="Posho, Beans, Silver Fish" />
+            <ListItem title="Oluwoombo, Molokoni" />
+          </ListAccordion>
 
-        <List.Accordion
-          title="Dinner"
-          left={props => <List.Icon {...props} icon="food-variant"/>}
-          expanded={dinnerExpanded}
-          onPress={() => setDinnerExpanded(!dinnerExpanded)}
-        >
-          <List.Item title="Rice, Peas, French Beans" />
-          <List.Item title="Yams, Sweet Potatoes, Greens" />
-          <List.Item title="Local Rolex, Kikomando" />
-        </List.Accordion>
+          <ListAccordion
+            title="Dinner"
+            left={props => <List.Icon {...props} icon="food-variant"/>}
+            expanded={dinnerExpanded}
+            onPress={() => setDinnerExpanded(!dinnerExpanded)}
+          >
+            <ListItem title="Rice, Peas, French Beans" />
+            <ListItem title="Yams, Sweet Potatoes, Greens" />
+            <ListItem title="Local Rolex, Kikomando" />
+          </ListAccordion>
 
-        <List.Accordion
-          title="Drinks"
-          left={props => <List.Icon {...props} icon="cup"/>}
-          expanded={drinksExpanded}
-          onPress={() => setDrinksExpanded(!drinksExpanded)}
-        >
-          <List.Item title="Soda" />
-          <List.Item title="Passion Fruit Juice" />
-          <List.Item title="African Tea" />
-        </List.Accordion>      
-      </ListScrollView>
+          <ListAccordion
+            title="Drinks"
+            left={props => <List.Icon {...props} icon="cup"/>}
+            expanded={drinksExpanded}
+            onPress={() => setDrinksExpanded(!drinksExpanded)}
+          >
+            <ListItem title="Soda" />
+            <ListItem title="Passion Fruit Juice" />
+            <ListItem title="African Tea" />
+          </ListAccordion>      
+        </ListScrollView>
     </DetailsView>
   )
 }
