@@ -21,6 +21,10 @@ const SearchComponent = () => {
     }
   }
 
+  useEffect(() => {
+    setSearchKeyWord(keyWord);
+  }, [keyWord])
+
   return (
     <SearchContainer>
       <Searchbar 

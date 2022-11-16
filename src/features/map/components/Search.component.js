@@ -25,6 +25,10 @@ const SearchComponent = () => {
     }
   }
 
+  useEffect(() => {
+    setSearchKeyWord(keyWord)
+  }, [keyWord])
+
   return (
     <SearchContainer>
       <Searchbar 
@@ -35,6 +39,7 @@ const SearchComponent = () => {
         }}
         onSubmitEditing={handleSubmit}
         style={{elevation: 20}}
+        icon="map"
       />
     </SearchContainer>
   )
