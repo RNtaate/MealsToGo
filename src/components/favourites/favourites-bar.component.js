@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 
 import { Text } from '../typography/text.component';
@@ -10,7 +10,7 @@ const FavouritesWrapper = styled(View)`
   padding: ${({theme}) => `${theme.space[2]} ${theme.space[3]}`};
 `;
 
-const FavouritesBar = ({ favourites }) => {
+const FavouritesBar = ({ favourites, onNavigate }) => {
   if(!favourites.length) {
     return null;
   }
@@ -24,7 +24,9 @@ const FavouritesBar = ({ favourites }) => {
         {favourites.map((restaurant) => {
           return(
             <Spacer position={"horizontal"} size={"small"} >
-              <CompactRestaurantInfo restaurant={restaurant}/>
+              <TouchableOpacity onPress={() => onNavigate("RestaurantsDetails", {restaurant})}>
+                <CompactRestaurantInfo restaurant={restaurant}/>
+              </TouchableOpacity>
             </Spacer>
           )
         })}

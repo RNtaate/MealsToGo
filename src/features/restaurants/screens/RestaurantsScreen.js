@@ -47,7 +47,7 @@ const RestaurantsScreen = ({navigation}) => {
           <ActivityIndicator size={'large'} color={Colors.blue600}/>
         </ActivityView> :
         <ListContainer>
-          { isToggle && <FavouritesBar favourites={favourites} />}
+          { isToggle && <FavouritesBar favourites={favourites} onNavigate={ navigation.navigate } />}
           <RestaurantList 
             data={restaurants}
             renderItem={({ item }) => {
