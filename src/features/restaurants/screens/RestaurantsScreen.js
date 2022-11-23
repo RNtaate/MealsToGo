@@ -10,6 +10,7 @@ import { SafeArea } from '../../../components/utility/safe-area.component';
 import FavouritesBar from '../../../components/favourites/favourites-bar.component';
 
 import { RestaurantContext } from '../../../services/restaurants/restaurants.context';
+import { FavouritesContext } from '../../../services/favourites/favourites.context';
 
 const RestaurantScreenWrapper = styled(SafeArea)``;
 
@@ -35,6 +36,7 @@ const RestaurantList = styled(FlatList).attrs({
 const RestaurantsScreen = ({navigation}) => {
 
   const {restaurants, isLoading} = useContext(RestaurantContext);
+  const { favourites } = useContext(FavouritesContext);
   const [ isToggle, setIsToggle ] = useState(false);
 
   return (
@@ -45,7 +47,7 @@ const RestaurantsScreen = ({navigation}) => {
           <ActivityIndicator size={'large'} color={Colors.blue600}/>
         </ActivityView> :
         <ListContainer>
-          { isToggle && <FavouritesBar />}
+          { isToggle && <FavouritesBar favourites={favourites} />}
           <RestaurantList 
             data={restaurants}
             renderItem={({ item }) => {
