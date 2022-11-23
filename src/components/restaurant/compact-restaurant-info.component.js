@@ -15,6 +15,7 @@ const Item = styled(View)`
 const CompactImage = styled(Image)`
   width: 100px;
   height: 100px;
+  border-radius: 10px;
 `;
 
 const CompactWebView = styled(WebView)`
@@ -24,8 +25,8 @@ const CompactWebView = styled(WebView)`
 
 const isAndroid = Platform.OS === 'android';
 
-export const CompactRestaurantInfo = ({ restaurant }) => {
-  const FinalImage = isAndroid ? CompactWebView : CompactImage
+export const CompactRestaurantInfo = ({ restaurant, isMap }) => {
+  const FinalImage = (isAndroid && isMap) ? CompactWebView : CompactImage
   return (
     <Item>
       <FinalImage source={{uri: restaurant.photos[0]}} resizeMode="cover" />
