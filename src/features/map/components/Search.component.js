@@ -8,7 +8,17 @@ import { LocationContext } from "../../../services/location/location.context";
 
 const SearchContainer = styled(View)`
   padding: ${(props) => `${props.theme.sizes[0]} ${props.theme.sizes[1]}`};
+  position: absolute;
+  top: 40px;
+  width: 100%;
+  z-index: 999;
 `;
+
+const MapSearchBar = styled(Searchbar).attrs(props => ({
+  inputStyle: {
+    fontFamily: props.theme.fonts.heading
+  }
+}))``;
 
 const SearchComponent = () => {
 
@@ -22,18 +32,20 @@ const SearchComponent = () => {
   }
 
   useEffect(() => {
-    setSearchKeyWord(keyWord);
+    setSearchKeyWord(keyWord)
   }, [keyWord])
 
   return (
     <SearchContainer>
-      <Searchbar 
+      <MapSearchBar 
         placeholder='Search for a place'
         value={searchKeyWord}
         onChangeText={(text) => {
           setSearchKeyWord(text);
         }}
         onSubmitEditing={handleSubmit}
+        style={{elevation: 20}}
+        icon="map"
       />
     </SearchContainer>
   )
