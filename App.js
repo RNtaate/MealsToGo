@@ -7,6 +7,7 @@ import { useFonts as latoUseFont, Lato_400Regular } from '@expo-google-fonts/lat
 import { theme } from './src/features/restaurants/infrastructure/theme';
 import RestaurantContextProvider from './src/services/restaurants/restaurants.context';
 import LocationContextProvider from './src/services/location/location.context';
+import FavouritesContextProvider from './src/services/favourites/favourites.context';
 import AppNavigator from './src/features/restaurants/infrastructure/navigation/app.navigator';
 
 const isAndroid = Platform.OS
@@ -22,11 +23,13 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <LocationContextProvider>
-          <RestaurantContextProvider>
-            <AppNavigator />
-          </RestaurantContextProvider>
-        </LocationContextProvider>
+        <FavouritesContextProvider>
+          <LocationContextProvider>
+            <RestaurantContextProvider>
+              <AppNavigator />
+            </RestaurantContextProvider>
+          </LocationContextProvider>
+        </FavouritesContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style='auto' />
     </>
