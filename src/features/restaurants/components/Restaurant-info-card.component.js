@@ -31,7 +31,7 @@ const RestaurantInfoCard = ({ restaurant = {} }) => {
 
   return (
     <RestaurantCard>
-      <Favourite />
+      <Favourite restaurant={restaurant} />
       <Card.Cover source={{ uri: photos[0]}}/>
       <Spacer position={"vertical"} size={"medium"}>
         <Text variant={"label"}>{name}</Text>
