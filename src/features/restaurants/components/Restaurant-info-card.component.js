@@ -12,6 +12,7 @@ import {
   OpenSection,
   Icon
 } from './Restaurant-info-card.styles';
+import Favourite from '../../../components/favourites/favourite.component';
 
 // RestaurantInfoCard function starts here ...
 
@@ -30,6 +31,7 @@ const RestaurantInfoCard = ({ restaurant = {} }) => {
 
   return (
     <RestaurantCard>
+      <Favourite />
       <Card.Cover source={{ uri: photos[0]}}/>
       <Spacer position={"vertical"} size={"medium"}>
         <Text variant={"label"}>{name}</Text>
