@@ -20,7 +20,7 @@ const FavouritesBar = ({ favourites, onNavigate }) => {
       <Spacer position={"bottom"}>
         <Text variant="caption" >Favourites</Text>
       </Spacer>
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} >
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} fadingEdgeLength={20} >
         {favourites.map((restaurant) => {
           return(
             <Spacer position={"horizontal"} size={"small"} >
