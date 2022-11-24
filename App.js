@@ -1,5 +1,4 @@
 import 'react-native-gesture-handler';
-import { useEffect, useState } from 'react';
 import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
 import { ThemeProvider } from 'styled-components/native';
 import { useFonts as oswaldUseFont, Oswald_400Regular } from '@expo-google-fonts/oswald';
@@ -30,39 +29,12 @@ export const auth = getAuth(app);
 
 export default function App() {
 
-  const[isAuthenticated, setIsAuthenticated] = useState(false);
-
-  // useEffect(() => {
-
-  //   setTimeout(() => {
-  //     signInWithEmailAndPassword(auth, "original@marvel.com", "123456")
-  //     .then((userCredential) => {
-  //       console.log(userCredential.user);
-  //       setIsAuthenticated(true)
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       setIsAuthenticated(false);
-  //     })
-  //   }, 3000)
-  // }, [])
-
   const [oswaldFontFamily] = oswaldUseFont({ Oswald_400Regular });
   const [latoFontFamily] = latoUseFont({ Lato_400Regular })
 
   if (!oswaldFontFamily || !latoFontFamily) {
     return null
   }
-
-  // if(!isAuthenticated) {
-  //   return (
-  //     <ThemeProvider theme={theme} >
-  //       <SafeArea>
-  //         <Text variant="caption" >Checking Your Authentication Status ...</Text>
-  //       </SafeArea>
-  //     </ThemeProvider>
-  //   )
-  // }
 
   return (
     <>
