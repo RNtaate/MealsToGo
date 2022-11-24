@@ -42,12 +42,12 @@ const RestaurantsScreen = ({navigation}) => {
   return (
     <RestaurantScreenWrapper>
       <SearchComponent isFavouritesToggle={isToggle} onFavouritesToggle={() => setIsToggle(!isToggle)} />
+      { isToggle && <FavouritesBar favourites={favourites} onNavigate={ navigation.navigate } />}
       { isLoading ? 
         <ActivityView>
           <ActivityIndicator size={'large'} color={Colors.blue600}/>
         </ActivityView> :
         <ListContainer>
-          { isToggle && <FavouritesBar favourites={favourites} onNavigate={ navigation.navigate } />}
           <RestaurantList 
             data={restaurants}
             renderItem={({ item }) => {
