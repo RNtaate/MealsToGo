@@ -7,11 +7,11 @@ import { useFonts as latoUseFont, Lato_400Regular } from '@expo-google-fonts/lat
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
-import { theme } from './src/features/restaurants/infrastructure/theme';
+import { theme } from './src/infrastructure/theme';
 import RestaurantContextProvider from './src/services/restaurants/restaurants.context';
 import LocationContextProvider from './src/services/location/location.context';
 import FavouritesContextProvider from './src/services/favourites/favourites.context';
-import AppNavigator from './src/features/restaurants/infrastructure/navigation/app.navigator';
+import AppNavigator from './src/infrastructure/navigation/app.navigator';
 import { Text } from './src/components/typography/text.component';
 import { SafeArea } from './src/components/utility/safe-area.component';
 

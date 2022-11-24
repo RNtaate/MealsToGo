@@ -5,8 +5,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
 import { RestaurantsNavigation } from './restaurants.navigator';
-import { SafeArea } from '../../../../components/utility/safe-area.component';
-import { MapScreen } from '../../../map/screens/map.screen';
+import { SafeArea } from '../../components/utility/safe-area.component';
+import { MapScreen } from '../../features/map/screens/map.screen'
 
 
 const SettingsScreen = () => {
