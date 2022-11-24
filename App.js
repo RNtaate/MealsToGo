@@ -11,41 +11,41 @@ import { theme } from './src/infrastructure/theme';
 import RestaurantContextProvider from './src/services/restaurants/restaurants.context';
 import LocationContextProvider from './src/services/location/location.context';
 import FavouritesContextProvider from './src/services/favourites/favourites.context';
+import AuthenticationContextProvider from './src/services/authentication/authentication.context';
 import AppNavigator from './src/infrastructure/navigation/app.navigator';
-import { Text } from './src/components/typography/text.component';
-import { SafeArea } from './src/components/utility/safe-area.component';
 
 const isAndroid = Platform.OS
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAYPkx_zOZmfNvQloA9ZkjZh80xtI56_Ns",
+  authDomain: "mealstogo-7bc9a.firebaseapp.com",
+  projectId: "mealstogo-7bc9a",
+  storageBucket: "mealstogo-7bc9a.appspot.com",
+  messagingSenderId: "1007401999647",
+  appId: "1:1007401999647:web:3a45fe5a0f58724969242a"
+};
+
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+
 export default function App() {
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyAYPkx_zOZmfNvQloA9ZkjZh80xtI56_Ns",
-    authDomain: "mealstogo-7bc9a.firebaseapp.com",
-    projectId: "mealstogo-7bc9a",
-    storageBucket: "mealstogo-7bc9a.appspot.com",
-    messagingSenderId: "1007401999647",
-    appId: "1:1007401999647:web:3a45fe5a0f58724969242a"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
 
   const[isAuthenticated, setIsAuthenticated] = useState(false);
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    setTimeout(() => {
-      signInWithEmailAndPassword(auth, "original@marvel.com", "123456")
-      .then((userCredential) => {
-        console.log(userCredential.user);
-        setIsAuthenticated(true)
-      })
-      .catch((err) => {
-        console.log(err);
-        setIsAuthenticated(false);
-      })
-    }, 3000)
-  }, [])
+  //   setTimeout(() => {
+  //     signInWithEmailAndPassword(auth, "original@marvel.com", "123456")
+  //     .then((userCredential) => {
+  //       console.log(userCredential.user);
+  //       setIsAuthenticated(true)
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       setIsAuthenticated(false);
+  //     })
+  //   }, 3000)
+  // }, [])
 
   const [oswaldFontFamily] = oswaldUseFont({ Oswald_400Regular });
   const [latoFontFamily] = latoUseFont({ Lato_400Regular })
@@ -54,26 +54,28 @@ export default function App() {
     return null
   }
 
-  if(!isAuthenticated) {
-    return (
-      <ThemeProvider theme={theme} >
-        <SafeArea>
-          <Text variant="caption" >Checking Your Authentication Status ...</Text>
-        </SafeArea>
-      </ThemeProvider>
-    )
-  }
+  // if(!isAuthenticated) {
+  //   return (
+  //     <ThemeProvider theme={theme} >
+  //       <SafeArea>
+  //         <Text variant="caption" >Checking Your Authentication Status ...</Text>
+  //       </SafeArea>
+  //     </ThemeProvider>
+  //   )
+  // }
 
   return (
     <>
       <ThemeProvider theme={theme}>
-        <FavouritesContextProvider>
-          <LocationContextProvider>
-            <RestaurantContextProvider>
-              <AppNavigator />
-            </RestaurantContextProvider>
-          </LocationContextProvider>
-        </FavouritesContextProvider>
+        <AuthenticationContextProvider>
+          <FavouritesContextProvider>
+            <LocationContextProvider>
+              <RestaurantContextProvider>
+                <AppNavigator />
+              </RestaurantContextProvider>
+            </LocationContextProvider>
+          </FavouritesContextProvider>
+        </AuthenticationContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style='auto' />
     </>
