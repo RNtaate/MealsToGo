@@ -3,14 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Text, View } from 'react-native';
 
 import { SafeArea } from '../../components/utility/safe-area.component';
-
-const AccountScreen = () => {
-  return(
-    <SafeArea>
-      <Text>Account Screen</Text>
-    </SafeArea>
-  )
-}
+import AccountScreen from '../../features/account/screens/Account.screen';
 
 const LoginScreen = () => {
   return(
