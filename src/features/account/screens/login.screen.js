@@ -5,7 +5,7 @@ import { Spacer } from '../../../components/Spacer/Spacer.component';
 import { Text } from '../../../components/typography/text.component';
 import { AuthenticationContext } from '../../../services/authentication/authentication.context';
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
 
   const { onLogin, isLoading, error } = useContext(AuthenticationContext);
   const [email, setEmail] = useState('');
@@ -29,48 +29,54 @@ const LoginScreen = () => {
 
   return (
     <AccountBackground>
-      <Spacer position={'bottom'} size={'medium'} >
-        <Title>
-          MEALS TO GO
-        </Title>
-      </Spacer>        
-      <AccountContainer>
-        <AuthInput
-          label="Email"
-          onChangeText={(text) => setEmail(text) }
-          mode='flat'
-          autoCapitalize="none"
-          autoComplete="off"
-          keyboardType="email-address"
-          textContentType="emailAddress"
-          value={email}
-        />
-
-        <Spacer position="vertical" size="large">
+      <Title>
+        MEALS TO GO
+      </Title>
+      <Spacer position="vertical" size="large" >
+        <AccountContainer>
           <AuthInput
-            label="Password"
-            autoCapitalize={'none'}
-            secureTextEntry={true}
-            value={password}
-            onChangeText={(text) => setPassword(text) }
+            label="Email"
+            onChangeText={(text) => setEmail(text) }
+            mode='flat'
+            autoCapitalize="none"
+            autoComplete="off"
+            keyboardType="email-address"
+            textContentType="emailAddress"
+            value={email}
           />
-        </Spacer>
 
-        {loginError ? 
-          <Spacer position="bottom" size="large" >
-            <ErrorMessage variant="error" >{loginError}</ErrorMessage>
-          </Spacer> : null
-        }
-        <AccountButton
-          icon="lock-open-outline"
-          mode="contained"
-          onPress={() => handleLogin(email.trim(), password.trim())}
-          loading={isLoading}
-          disabled={isLoading}
-        >
-          Login
-        </AccountButton>
-      </AccountContainer>
+          <Spacer position="vertical" size="large">
+            <AuthInput
+              label="Password"
+              autoCapitalize={'none'}
+              secureTextEntry={true}
+              value={password}
+              onChangeText={(text) => setPassword(text) }
+            />
+          </Spacer>
+
+          {loginError ? 
+            <Spacer position="bottom" size="large" >
+              <ErrorMessage variant="error" >{loginError}</ErrorMessage>
+            </Spacer> : null
+          }
+          <AccountButton
+            icon="lock-open-outline"
+            mode="contained"
+            onPress={() => handleLogin(email.trim(), password.trim())}
+            loading={isLoading}
+            disabled={isLoading}
+          >
+            Login
+          </AccountButton>
+        </AccountContainer>
+      </Spacer>
+      <AccountButton
+        mode="contained"
+        onPress={() => navigation.goBack()}
+      >
+        BACK
+      </AccountButton>
     </AccountBackground>
   )
 }
