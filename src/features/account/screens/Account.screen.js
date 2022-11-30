@@ -1,15 +1,15 @@
 import React from 'react';
 import { Button } from 'react-native-paper';
 
-import { AccountBackground, AccountCover, AccountButtonHolder, AccountButton } from '../components/Account.styles';
+import { AccountBackground, AccountCover, AccountButton, AccountContainer } from '../components/Account.styles';
 import { Spacer } from '../../../components/Spacer/Spacer.component';
 
-const AccountScreen = () => {
+const AccountScreen = ({ navigation }) => {
   return (
     <AccountBackground>
       <AccountCover />
-      <AccountButtonHolder>
-        <AccountButton icon="account-lock-open-outline" mode="contained" onPress={() => null} >
+      <AccountContainer>
+        <AccountButton icon="lock-open-outline" mode="contained" onPress={() => navigation.navigate("Login")} >
           Login
         </AccountButton>
 
@@ -18,7 +18,7 @@ const AccountScreen = () => {
             Sign Up
           </AccountButton>
         </Spacer>
-      </AccountButtonHolder>
+      </AccountContainer>
     </AccountBackground>
   )
 }
