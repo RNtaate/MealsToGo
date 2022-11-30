@@ -7,13 +7,17 @@ import { RestaurantsNavigation } from './restaurants.navigator';
 import { SafeArea } from '../../components/utility/safe-area.component';
 import { MapScreen } from '../../features/map/screens/map.screen'
 import { AuthenticationContext } from '../../services/authentication/authentication.context';
+import FavouritesContextProvider from '../../services/favourites/favourites.context';
+import LocationContextProvider from '../../services/location/location.context';
+import RestaurantContextProvider from '../../services/restaurants/restaurants.context';
 
 
 const SettingsScreen = () => {
-  const { onLogOut } = useContext( AuthenticationContext);
+  const { onLogOut, user } = useContext( AuthenticationContext);
   return (
     <SafeArea>
       <Text>Settings</Text>
+      <Text>{user.email}</Text>
       <Button
         title='Logout'
         onPress={() => onLogOut() }
@@ -58,7 +62,13 @@ const AppNavigator = () => {
   }
 
   return (
-    <ScreenTabs />
+    <FavouritesContextProvider>
+      <LocationContextProvider>
+        <RestaurantContextProvider>
+          <ScreenTabs />
+        </RestaurantContextProvider>
+      </LocationContextProvider>
+    </FavouritesContextProvider>
   )
 }
 
