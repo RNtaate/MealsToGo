@@ -7,8 +7,7 @@ import { AuthenticationContext } from '../../services/authentication/authenticat
 
 const Navigation = () => {
 
-  const { user } = useContext(AuthenticationContext);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { user, isAuthenticated } = useContext(AuthenticationContext);
 
   return (
     <NavigationContainer>
