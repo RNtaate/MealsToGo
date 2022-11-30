@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 
-import { AccountBackground, AccountButton, AccountContainer, AuthInput, ErrorMessage } from '../components/Account.styles';
+import { AccountBackground, AccountButton, AccountContainer, AuthInput, ErrorMessage, Title } from '../components/Account.styles';
 import { Spacer } from '../../../components/Spacer/Spacer.component';
 import { Text } from '../../../components/typography/text.component';
 import { AuthenticationContext } from '../../../services/authentication/authentication.context';
@@ -29,6 +29,11 @@ const LoginScreen = () => {
 
   return (
     <AccountBackground>
+      <Spacer position={'bottom'} size={'medium'} >
+        <Title>
+          MEALS TO GO
+        </Title>
+      </Spacer>        
       <AccountContainer>
         <AuthInput
           label="Email"

@@ -40,3 +40,7 @@ export const AuthInput = styled(TextInput)`
 export const ErrorMessage = styled(Text)`
   max-width: 300px;
 `;
+
+export const Title = styled(Text)`
+  font-size: ${(props) => props.theme.fontSizes.h5};
+`;
