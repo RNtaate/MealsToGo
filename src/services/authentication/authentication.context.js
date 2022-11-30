@@ -12,6 +12,7 @@ const AuthenticationContextProvider = ({ children }) => {
 
   const onLogin = (email, password) => {
     setIsLoading(true)
+    setError("")
     LoginRequest(email, password)
     .then((userCredential) => {
       setIsLoading(false)
@@ -19,7 +20,7 @@ const AuthenticationContextProvider = ({ children }) => {
     })
     .catch(err => {
       setIsLoading(false)
-      setError(err)
+      setError(err.message.toString())
     })
   }
 
