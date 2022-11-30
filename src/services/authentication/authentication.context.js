@@ -28,7 +28,8 @@ const AuthenticationContextProvider = ({ children }) => {
       user,
       isLoading,
       error,
-      onLogin
+      onLogin,
+      isAuthenticated: !!user
     }} >
       { children }
     </AuthenticationContext.Provider>
