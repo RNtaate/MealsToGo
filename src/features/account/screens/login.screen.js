@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 
-import { AccountBackground, AccountButton, AccountContainer, AuthInput } from '../components/Account.styles';
+import { AccountBackground, AccountButton, AccountContainer, AuthInput, ErrorMessage } from '../components/Account.styles';
 import { Spacer } from '../../../components/Spacer/Spacer.component';
 import { Text } from '../../../components/typography/text.component';
 import { AuthenticationContext } from '../../../services/authentication/authentication.context';
@@ -53,7 +53,7 @@ const LoginScreen = () => {
 
         {loginError ? 
           <Spacer position="bottom" size="large" >
-            <Text variant="error" style={{maxWidth: 300}} >{loginError}</Text>
+            <ErrorMessage variant="error" >{loginError}</ErrorMessage>
           </Spacer> : null
         }
         <AccountButton

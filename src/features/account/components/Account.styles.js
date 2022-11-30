@@ -1,6 +1,7 @@
 import { ImageBackground, View } from 'react-native';
 import styled from 'styled-components/native';
 import { Button, TextInput } from 'react-native-paper';
+import { Text } from '../../../components/typography/text.component';
 
 export const AccountBackground = styled(ImageBackground).attrs({
   source: require('../../../../assets/home_bg.jpg'),
@@ -33,5 +34,9 @@ export const AccountButton = styled(Button).attrs((props) => ({
 
 export const AuthInput = styled(TextInput)`
   width: 300px;
+  max-width: 300px;
+`;
+
+export const ErrorMessage = styled(Text)`
   max-width: 300px;
 `;
