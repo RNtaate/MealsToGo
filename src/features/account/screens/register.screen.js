@@ -1,13 +1,13 @@
 import React, { useState, useContext } from 'react';
 
 import { Text } from '../../../components/typography/text.component';
-import { AuthInput, AccountBackground, AccountContainer, AccountCover, Title, AccountButton } from '../components/Account.styles';
+import { AuthInput, AccountBackground, AccountContainer, AccountCover, Title, AccountButton, ErrorMessage } from '../components/Account.styles';
 import { Spacer } from '../../../components/Spacer/Spacer.component';
 import { AuthenticationContext } from '../../../services/authentication/authentication.context';
 
 const RegisterScreen = ({ navigation }) => {
 
-  const {isLoading, error} = useContext(AuthenticationContext);
+  const {isLoading, error, onRegister} = useContext(AuthenticationContext);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('')
@@ -48,20 +48,20 @@ const RegisterScreen = ({ navigation }) => {
               label="Repeat Password"
               autoCapitalize={'none'}
               secureTextEntry={true}
-              value={password}
+              value={repeatPassword}
               onChangeText={(text) => setRepeatPassword(text) }
             />
           </Spacer>
 
-          {registerError ? 
+          {error ? 
             <Spacer position="bottom" size="large" >
-              <ErrorMessage variant="error" >{registerError}</ErrorMessage>
+              <ErrorMessage variant="error" >{error}</ErrorMessage>
             </Spacer> : null
           }
           <AccountButton
             icon="account-plus-outline"
             mode="contained"
-            onPress={() => null}
+            onPress={() => onRegister(email, password, repeatPassword)}
             loading={isLoading}
             disabled={isLoading}
           >

@@ -1,6 +1,6 @@
 import React, { createContext, useState } from 'react';
 
-import { LoginRequest } from './authentication.service';
+import { LoginRequest, RegisterRequest } from './authentication.service';
 
 export const AuthenticationContext = createContext();
 
@@ -24,12 +24,38 @@ const AuthenticationContextProvider = ({ children }) => {
     })
   }
 
+  const onRegister = (email, password, repeatPassword) => {
+    setError("");
+
+    if (!email.length || !password.length || !repeatPassword.length ) {
+      setError("Error: Email, Password or Repeat Password can not be empty");
+      return
+    }
+
+    if(!(password === repeatPassword)) {
+      setError("Error: Password doesnot match Repeat Password");
+      return;
+    }
+
+    setIsLoading(true)
+    RegisterRequest(email, password)
+    .then((userCredential) => {
+      setIsLoading(false)
+      setUser(userCredential.user);
+    })
+    .catch(err => {
+      setIsLoading(false)
+      setError(err.message.toString())
+    })
+  }
+
   return (
     <AuthenticationContext.Provider value={{
       user,
       isLoading,
       error,
       onLogin,
+      onRegister,
       isAuthenticated: !!user
     }} >
       { children }
