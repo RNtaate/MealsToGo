@@ -19,7 +19,7 @@ const AccountScreen = ({ navigation }) => {
         </AccountButton>
 
         <Spacer position="top" size="large" >
-          <AccountButton icon="account-plus-outline" mode="contained" onPress={() => null} >
+          <AccountButton icon="account-plus-outline" mode="contained" onPress={() => navigation.navigate("Register")} >
             Sign Up
           </AccountButton>
         </Spacer>
