@@ -1,17 +1,23 @@
-import React from 'react';
-import { Text } from 'react-native';
+import React, { useContext } from 'react';
+import { Text, Button } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
 import { RestaurantsNavigation } from './restaurants.navigator';
 import { SafeArea } from '../../components/utility/safe-area.component';
 import { MapScreen } from '../../features/map/screens/map.screen'
+import { AuthenticationContext } from '../../services/authentication/authentication.context';
 
 
 const SettingsScreen = () => {
+  const { onLogOut } = useContext( AuthenticationContext);
   return (
     <SafeArea>
       <Text>Settings</Text>
+      <Button
+        title='Logout'
+        onPress={() => onLogOut() }
+      />
     </SafeArea>
   )
 }

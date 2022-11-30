@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-import { onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
 
 import { LoginRequest, RegisterRequest } from './authentication.service';
 import { auth } from './authentication.service';
@@ -59,6 +59,10 @@ const AuthenticationContextProvider = ({ children }) => {
     })
   }
 
+  const onLogOut = () => {
+    signOut(auth);
+  }
+
   return (
     <AuthenticationContext.Provider value={{
       user,
@@ -66,6 +70,7 @@ const AuthenticationContextProvider = ({ children }) => {
       error,
       onLogin,
       onRegister,
+      onLogOut,
       isAuthenticated: !!user
     }} >
       { children }
