@@ -32,7 +32,16 @@ export const AccountButton = styled(Button).attrs((props) => ({
   padding: ${({theme}) => theme.space[1]};
 `;
 
-export const AuthInput = styled(TextInput)`
+export const AuthInput = styled(TextInput).attrs((props) => ({
+  fontFamily: props.theme.fonts.heading,
+  theme: {
+    fonts: {
+      regular: {
+        fontFamily: props.theme.fonts.body
+      } 
+    }
+  }
+}))`
   width: 300px;
   max-width: 300px;
 `;
